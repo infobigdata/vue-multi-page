@@ -47,4 +47,21 @@
 └── README.md
 ```
 
-## github
+## Quick setup — if you’ve done this kind of thing before
+* …or `create a new repository` on the command line
+
+ ```bash
+echo "# aaa" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:infobigdata/vue-multi-page.git
+git push -u origin master
+```
+
+* …or `push an existing repository` from the command line
+
+ ```bash
+git remote add origin git@github.com:infobigdata/vue-multi-page.git
+git push -u origin master
+```
