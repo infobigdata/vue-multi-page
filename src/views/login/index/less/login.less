@@ -1,0 +1,90 @@
+@blue: #0066ff;
+@white: #fff;
+@radius: 5px;
+@height: 50px;
+@width: 330px;
+@baisc-size: 14px;
+
+@themes: "../images";
+
+html,body{
+  width: 100%;
+  height: 100%;
+}
+
+.login {
+    position: relative;
+    height: 100%;
+    background: #0092ff url('@{themes}/bg.jpg') center no-repeat;
+    &>section{
+        position: absolute;
+        top: 50%;
+        margin-top: -@width/2;
+        width: 100%;
+    }
+    .Form{
+      width: @width;
+      height: @width;
+      min-width: @width;
+      margin: 0 auto;
+      input{
+        border: none;
+        border-radius: @radius;
+        box-sizing: border-box;
+      }
+      .title{
+        height: 42px;
+        background: url('@{themes}/title.png') center no-repeat;
+        margin-bottom: 38px;
+        overflow: hidden;
+        text-indent: -9999px;
+      }
+      .input-items{
+        height: @height;
+        margin-bottom: 30px;
+      }
+      .ipt-text{
+        width: 100%;
+        font-size: @baisc-size;
+        line-height: @height;
+        padding: 0 20px;
+        background-color: @white;
+        border: 1px solid @white;
+        &:focus{
+            border-color: @blue;
+        }
+      }
+      .ipt-button{
+        width: 120px;
+        height: @height;
+        color: @white;
+        background-color: @blue;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .ipt-link{
+        color: @white;
+        font-size: @baisc-size;
+        line-height: @height;
+        margin-right: 16px;
+      }
+    }
+
+    header{
+        position: fixed;
+        left: 10px;
+        top: 20px;
+    }
+    footer{
+      position: fixed;
+      text-align: center;
+      left: 0;
+      right: 0;
+      bottom: 16px;
+      font-size: 12px;
+      line-height: 14px;
+      color: @white;
+    }
+}
+
+
