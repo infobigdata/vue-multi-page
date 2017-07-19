@@ -18,19 +18,15 @@
         </div>
       </div>
       <div class="copyright">
-          地址: 武汉市江汉区香港路259号 邮编: 430015 鄂ICP备10041712号 技术支持：武汉中润普达<br> Copyright 2016 © All rights reserverd by WuHan Administrator
-          for Industry &amp; Commerce Powered by ZRPD
+          地址武汉大规模
+
       </div>
   </div>
 </template>
 
 <script>
   import ZHeader from 'components/header';
-
   import { Notice } from 'iview';
-
-
-
   export default {
     name: 'login',
     components: {
