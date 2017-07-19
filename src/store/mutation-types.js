@@ -1,1 +1,2 @@
-export const CHECK_USER = 'CHECK_USER'
+export const CHECK_LOGIN = 'CHECK_LOGIN'
+export const GLOBAL_LOADINNG = 'GLOBAL_LOADINNG'
