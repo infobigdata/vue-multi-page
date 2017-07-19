@@ -14,7 +14,7 @@
             <input class="ipt-text" type="password" v-model="password" placeholder="请输入您的密码" />
           </div>
           <div class="overflow">
-            <input type="button" class="ipt-button fr" value="登录" @click="checkUser()"/>
+            <button type="button" class="ipt-button fr" @click="checkUser" v-bind:class="{ buttonLoading: isLoading}">登录</button>
             <a class="ipt-link fr" href="">忘记密码</a>
           </div>
         </form>
@@ -27,16 +27,48 @@
 </template>
 
 <script>
+  import Base from 'assets/js/base';
+
+  require('./less/login.less')
+
   export default{
     data() {
       return {
+        isLoading: false,
         username: '',
         password: ''
       }
     },
     methods: {
       checkUser(){
-
+        const self = this;
+        if (this.username == ''){
+          this.$message({ message: '用户名不能为空',type: 'warning' });
+        }else if (this.password == '') {
+          this.$message({ message: '密码不能为空',type: 'warning' });
+        }else{
+          this.isLoading = true;
+          Base.C.ajax({
+            url:'login.php',
+            type: 'post',
+            data: {
+              username: self.username,
+              password: self.password
+            },
+            success: function (res){
+              if (res.status == 1) {
+                self.$message({ message: '恭喜，成功！',type: 'success' });
+                location.href = '../dashboard/index.html'
+              }else{
+                self.$message({ message: '糟糕，出错了！',type: 'error' });
+              }
+            },
+            error: function(req){
+              self.fullscreenLoading = false;
+              self.$Notice.error({desc: '糟糕，出现了一个惊天大BUG!'});
+            }
+          })
+        }
       }
     }
   }

@@ -7,7 +7,6 @@ Vue.use(ElementUI)
 
 import C from 'assets/js/common'
 
-require('assets/less/common.less')
 import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-default/index.css'
 
