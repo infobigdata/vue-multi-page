@@ -25,7 +25,7 @@ var Rxports = {
       params: opts.params || {},
       data: qs.stringify(opts.data),
       headers: opts.headers || { 'Content-Type':'application/x-www-form-urlencoded' },
-      baseURL:'http://www.infobigdata.com/api/',
+      baseURL:'http://api.dev.com/api/',
       timeout: opts.time || 10*1000,
       responseType: opts.dataType || 'json'
     }).then(function(res){
