@@ -17,8 +17,7 @@
         </div>
         <div class="shezhi">
             <div class="shezhi_home">
-                <a class="shezhi_home_a"><img :src="face"/>
-                </a>
+                <a class="shezhi_home_a"><img :src="face"/></a>
                 <div class="Mlayer_1">
                     <i></i>
                     <span class="a_title">个人中心</span>
@@ -87,11 +86,11 @@
     export default{
         data(){
             return{
-
+                face: ''
             }
         }
     }
 </script>
-<style lang="less">
+<style lang="less" scoped>
   @import '~assets/less/leftBar.less';
 </style>
