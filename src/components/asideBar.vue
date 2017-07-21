@@ -5,7 +5,7 @@
                 <h5>仪表盘</h5>
                 <a class="xingjian">
                     <i></i>
-                    <div class="dropMenu">
+                    <div class="treeDropMenu">
                         <div class="xingjian_xq">
                             <p @click="addFolder()">新建文件夹</p>
                             <p @click="addDashboard()">新建仪表盘</p>
@@ -14,7 +14,7 @@
                 </a>
                 <a class="zhankaisq">
                     <i></i>
-                    <div class="dropMenu">
+                    <div class="treeDropMenu">
                         <div class="zhankaisq_xq">
                             <p @click="collapseAll()">收起全部</p>
                             <p @click="expandAll()">展开全部</p>

@@ -5,9 +5,9 @@
         <div class="nav_1">
             <asideBar></asideBar>
             <div id="fold_has" class="daohang MScroll">
-                <ul id="treeDom" class="ztree treeDom ztree_mbk">
+                <ul id="treeDom" class="zTreeList">
                 </ul>
-                <div class="Mlayer_2" id="tree_xiangqing" style="display: none; top: 248px;">
+                <div class="treeDropMenu" id="tree_xiangqing" style="display: none; top: 248px;">
                     <i></i>
                     <div style=" min-height: auto;">
                         <p>名称：<span >{{treeName}}</span></p>
@@ -15,18 +15,7 @@
                         <p>备注：<span id="tree_xiangqing_bz"></span></p>
                     </div>
                 </div>
-                <!-- <div class="Mlayer_3" id="shujugengxin">
-                    <i></i>
-                    <div style="padding: 8px 12px;">
-                        <p>
-                            <span>数据更新</span>
-                            <span id="date"></span>
-                            <span id="time"></span>
-                        </p>
-                    </div>
-                </div> -->
-
-                <div class="Mlayer_3" id="tree_tukuai_bianji" style="display: block;">
+                <div class="Mlayer_3" id="tree_tukuai_bianji" style="display: none;">
                     <i></i>
                     <div class="zhankaisq_xq">
                         <p onclick="dashboard.exportChart()">导出图片</p>
@@ -37,7 +26,7 @@
                     <input type="hidden" id="chart_id" />
                 </div>
 
-                <div class="Mlayer_3" id="tree_xiangqing_bianji">
+                <div class="Mlayer_3" id="tree_xiangqing_bianji" style="display:none;">
                     <i></i>
                     <div class="zhankaisq_xq">
                         <p onclick="dashboardEdit.init()">编辑</p>
@@ -56,6 +45,8 @@
 <script>
 import Base from 'assets/js/base';
 
+require('assets/less/ztree.less')
+
 import leftBar from 'components/leftBar';
 import ZHeader from 'components/Header';
 import asideBar from 'components/asideBar';
@@ -68,24 +59,7 @@ export default{
     },
     data() {
       return {
-        treeName: '',
-        treeData:{
-            "statusCode":"200",
-            "status":"success",
-            "message":null,
-            "data":[
-                {"id":"ba7d48efce","pId":"95fb4a9302","name":"投诉分析TU","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":true,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"95fb4a9302","pId":"0","name":"工会","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":true,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"96c3eeda1c","pId":"e63d20c681","name":"投诉分析Gov","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":true,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"e63d20c681","pId":"0","name":"文明办","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":true,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"233","pId":"ba7d48efce","name":"中文","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":false,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"234","pId":"ba7d48efce","name":"test2017-07-13 14:02:38","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":false,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"249","pId":"ba7d48efce","name":"aaaa","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":false,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"251","pId":"ba7d48efce","name":"test2017-07-18 10:47:15","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":false,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'},
-                {"id":"252","pId":"96c3eeda1c","name":"投诉分析","open":false,"xiangqing":null,"xinzeng":false,"oper":null,"flag":null,"folderName":null,"isParent":false,iconOpen:'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png'}
-            ],
-            "map":null,"page":null,"queryBean":null,"total":0,"rows":null,"listBean":null
-        }
+        treeName: ''
       }
     },
     mounted(){
@@ -93,8 +67,8 @@ export default{
     },
     methods: {
         initTree(){
-            var self = this;
-            var setting = {
+            const self = this;
+            const setting = {
                 edit: {
                   enable: true,
                   renameTitle: "",
@@ -106,17 +80,13 @@ export default{
                   showTitle: false,
                   addHoverDom: function(treeId, treeNode){
                     if(!treeNode.isParent) {
-                            var thisLi = $("#"+treeNode['tId']);
-                            // var thisLi = $('#'+a);
-                            var name = treeNode['name'];
-                            //$("#tree_xiangqing_nc").html(name);
+                            let thisLi = $("#"+treeNode['tId']);
+                            let name = treeNode['name'];
                             self.treeName = name;
                             $('#tree_xiangqing').css({
                               'display': 'block',
                               'top': thisLi.offset().top
                             });
-                            //alert(thisLi.offset().top)
-                            console.log(treeNode)
                       }
                   },
                   removeHoverDom: function(){
