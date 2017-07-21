@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './modelApp.vue'
 import VueRouter from 'vue-router'
-import '@/assets/css/common.less'
+import '@/assets/less/common.less'
 import '@/assets/css/modestyles.css'
 import store from '@/store/index'
 const Haeder = resolve => require(['@/components/listing/header.vue'],resolve)
