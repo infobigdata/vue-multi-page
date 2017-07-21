@@ -3,14 +3,98 @@
        <div class="left_tree">
          <div class="title_tree title_tree_defult" @click="switchState('on')">{{msg}}</div>
          <div class="search">
-           <input type="text" name="filename" placeholder="请输入关键字"/>
+           <input
+             type="text"
+             name="filename"
+             placeholder="请输入关键字"
+             @keydown="showBox($event)"
+             @blur="hideAll"
+             autocomplete="off"
+             v-model="type"
+           />
            <input type="submit" value="">
-           <div class="search_scroller">
-             <div class="scroller_warp">
-                 <ul>
-                    <li></li>
+           <div class="search_scroller" v-show="searchscroller">
+             <!--<v-bar-->
+                    <!--wrapper="wrappers"-->
+                    <!--vBar=""-->
+                    <!--vBarInternal=""-->
+                    <!--hBar="auto"-->
+                    <!--hBarInternal=""-->
+                    <!--ref="scroll"-->
+              <!--&gt;-->
+             <div class="scroller_warp" ref="wrap">
+
+
+
+               <ul>
+                    <li v-if="shoValue">{{shoValue}}</li>
+                    <li v-else>
+                      ！没有找到数据
+                    </li>
+
                  </ul>
+               <!--<ul>-->
+                   <!--<li>文明办</li>-->
+                   <!--<li>投诉与分析</li>-->
+                 <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>工商</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
+               <!--<ul>-->
+                 <!--<li>文明办</li>-->
+                 <!--<li>投诉与分析</li>-->
+               <!--</ul>-->
              </div>
+             <!--</v-bar>-->
            </div>
          </div>
          <div class="file_lsit">
@@ -102,8 +186,115 @@
        <div class="container">
 
        </div>
+      <Layer></Layer>
     </div>
 </template>
+
+<script>
+    import $ from 'jquery'
+    import VBar from 'v-bar'
+    import {mapGetters} from 'vuex'
+    import Layer from './components/poplayer.vue'
+    export default{
+      components:{
+        VBar,
+        Layer
+      },
+        data(){
+            return {
+                type:'',
+                wrappers:{
+                  width:"100%",
+                  height:"300px"
+                },
+                searchscroller:false,
+                msg: '模板列表',
+                swichstate:'files_disble',
+                modeData:[
+                          { designame:'文明办',
+                             childName:[
+                             {DesigChildname:'投诉分析Gov',fileText:['投诉分析','实时分析']},
+                             {DesigChildname:'投诉分析AIC',fileText:['投诉分析','实时分析']}
+                             ]
+                },{
+                        designame:'工商',
+                        childName:[
+                        {DesigChildname:'工商分析Gov',fileText:['工商投诉分析','实时分析']},
+                        {DesigChildname:'工商分析AIC',fileText:['工商投诉分析','实时分析']}
+                        ]
+                   },
+                  {
+                      designame:'建设',
+                      childName:[
+                      {DesigChildname:'工商分析Gov',fileText:['工商投诉分析','实时分析']},
+                      {DesigChildname:'工商分析AIC',fileText:['工商投诉分析','实时分析']}
+                    ]
+                  }
+                ]
+
+            }
+        },
+      methods:{
+        toggles(evnet){
+             evnet.stopPropagation()
+             let ev =  evnet.srcElement ||evnet.target;
+               //console.log($(ev))
+             console.log($(ev).attr('class'))
+          if(!$(ev).attr('class')){
+             return
+          }
+           if($(ev.childNodes[1]).is(":hidden")){
+             $(ev.childNodes[1]).slideDown();
+             $(ev).removeClass('files_disble').addClass('files_enble')
+           }else{
+             $(ev.childNodes[1]).slideUp();
+             $(ev).removeClass('files_enble').addClass('files_disble')
+           }
+         },
+        switchState(params){
+          if(params=='on'){
+             this.swichstate="files_enble"
+          }else{
+            this.swichstate="files_disble"
+          }
+        },
+        showBox(event){
+
+          this.searchscroller = true;
+
+          this.$store.dispatch('getShoso',{keyValue:this.type})
+//          const scrollbox = $(this.$refs.scroll)[0].$el;
+//           const autoHeight = $(this.$refs.wrap).height()
+//          if(autoHeight>300){
+//            $(scrollbox).height(300)
+//          }else{
+//            $(scrollbox).height(autoHeight)
+//          }
+         // console.log(this.type)
+        },
+        hideAll(){
+          //console.log('失去焦点')
+          this.searchscroller = false;
+        }
+      },
+      watch:{
+        swichstate(value){
+            if(value == 'files_enble'){
+               $(this.$refs.animate).slideDown()
+            }else{
+              $(this.$refs.animate).slideUp()
+            }
+         },
+      },
+      computed:{
+        ...mapGetters({shoValue:'getshosoValue'})
+      }
+
+
+
+    }
+
+</script>
 <style scoped>
   .listing_content{
     position:absolute;
@@ -120,41 +311,42 @@
     top:0;
     bottom:0;
   }
- .nav_crosswise{
-   height:70px;
-   position:absolute;
-   left:260px;
-   right:0;
-   background:#fff;
+  .nav_crosswise{
+    height:70px;
+    position:absolute;
+    left:260px;
+    right:0;
+    background:#fff;
 
-   /*background: -webkit-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);*/
-   /*background: -ms-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);*/
- }
- .box-float{
-   padding:0 30px;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-   height:100%;
+    /*background: -webkit-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);*/
+    /*background: -ms-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);*/
+  }
+  .box-float{
+    padding:0 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height:100%;
 
- }
- span.enble_template:before{
-   content:"";
-   display:block;
-   width:25px;
-   height:23px;
-   background:url(/static/common/images/shiyongmb.png)no-repeat center;
-   margin-bottom:5px;
+  }
 
- }
- span.use_tps{
-   display:flex;
-   flex-direction: column;
-   justify-content: center;
- align-items: center;
+  span.enble_template:before{
+    content:"";
+    display:block;
+    width:25px;
+    height:23px;
+    background:url(/static/common/images/shiyongmb.png)no-repeat center;
+    margin-bottom:5px;
 
- }
+  }
+  span.use_tps{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
   .box-float span.text-box{
     font-size:24px;
   }
@@ -179,18 +371,18 @@
     width:21px;
     height:17px;
   }
-.title_tree{
-  padding:14px 14px;
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 18px;
-  align-items: center;
-}
-.search{
-  padding:8px 14px 8px 14px;
-  position: relative;
-}
+  .title_tree{
+    padding:14px 14px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    align-items: center;
+  }
+  .search{
+    padding:8px 14px 8px 14px;
+    position: relative;
+  }
   .search input[type="text"]{
     width: 100%;
     padding: 6px 6px;
@@ -254,79 +446,27 @@
   ul.list_template>li>ul>li:last-child{
     padding-bottom:0;
   }
+  .search_scroller{
+    position:absolute;
+    left:14px;
+    top:50px;
+    right:14px;
+    background:#fff;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.3);
+    border:1px solid #ccc;
+    border-radius:3px;
+    /*width:100%;*/
+    max-height:300px;
+    height:auto;
+    overflow: hidden;
 
+  }
+  .scroller_warp{
+    padding:10px;
+  }
 
-
+  .wrappers {
+    width:100%;
+    height:300px;
+  }
 </style>
-<script>
-    import $ from 'jquery'
-    export default{
-        data(){
-            return {
-
-                msg: '模板列表',
-                swichstate:'files_disble',
-                modeData:[
-                          { designame:'文明办',
-                             childName:[
-                             {DesigChildname:'投诉分析Gov',fileText:['投诉分析','实时分析']},
-                             {DesigChildname:'投诉分析AIC',fileText:['投诉分析','实时分析']}
-                             ]
-                },{
-                        designame:'工商',
-                        childName:[
-                        {DesigChildname:'工商分析Gov',fileText:['工商投诉分析','实时分析']},
-                        {DesigChildname:'工商分析AIC',fileText:['工商投诉分析','实时分析']}
-                        ]
-                   },
-                  {
-                      designame:'建设',
-                      childName:[
-                      {DesigChildname:'工商分析Gov',fileText:['工商投诉分析','实时分析']},
-                      {DesigChildname:'工商分析AIC',fileText:['工商投诉分析','实时分析']}
-                    ]
-                  }
-                ]
-
-            }
-        },
-      methods:{
-        toggles(evnet){
-             evnet.stopPropagation()
-             let ev =  evnet.srcElement ||evnet.target;
-               //console.log($(ev))
-             console.log($(ev).attr('class'))
-          if(!$(ev).attr('class')){
-             return
-          }
-           if($(ev.childNodes[1]).is(":hidden")){
-             $(ev.childNodes[1]).slideDown();
-             $(ev).removeClass('files_disble').addClass('files_enble')
-           }else{
-             $(ev.childNodes[1]).slideUp();
-             $(ev).removeClass('files_enble').addClass('files_disble')
-           }
-         },
-        switchState(params){
-          if(params=='on'){
-             this.swichstate="files_enble"
-          }else{
-            this.swichstate="files_disble"
-          }
-        }
-      },
-      watch:{
-        swichstate(value){
-            if(value == 'files_enble'){
-               $(this.$refs.animate).slideDown()
-            }else{
-              $(this.$refs.animate).slideUp()
-            }
-         }
-      }
-
-
-
-    }
-
-</script>
