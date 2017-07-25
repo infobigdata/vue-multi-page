@@ -12,7 +12,17 @@ import api from '../api'
 }
 const state={
   shosho:{},
-  echartsList:{}
+  echartsList:{},
+  screenState:{
+      type:false,
+      titles:'',
+      charts:{}
+  },
+  echartsData:{
+      titles:'',
+      id:'',
+      data:{}
+  }
 }
 
 const actions = {
@@ -24,13 +34,28 @@ const actions = {
         }).catch((err)=>{
           console.log(err)
         })
-
-  }
+  },
+    onscreen({commit},params){
+       commit(types.SHOW_SCREEN,params)
+    },
+    echartsData({commit},params){
+        commit(types.ECHART_DATA,params)
+    }
 }
 
 const mutations={
     [types.SHO_SOKEY](state,res){
       state.shosho = res
+    },
+    [types.SHOW_SCREEN](state,res){
+        state.screenState.type = res.typeState
+        state.screenState.titles = res.title
+        state.screenState.charts = res.echarts
+    },
+    [types.ECHART_DATA](state,res){
+        state.echartsData.id = res.id;
+        state.echartsData.data = res.opitions;
+        state.echartsData.titles = res.title;
     }
 }
 
@@ -40,7 +65,10 @@ const getters = {
          return state.shosho
        }
        return ''
-     }
+     },
+    getScreenState:state=>state.screenState,
+
+    getEchartsData:state=>state.echartsData
 
 }
 

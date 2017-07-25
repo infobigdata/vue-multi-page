@@ -1,14 +1,40 @@
 <template>
     <header>
-      <ul class="nav_li">
+      <ul class="nav_li" v-if="!titlestate.type">
         <li class="tps" active="true">模板库</li>
         <li class="lang">智能语义</li>
         <li class="tables">仪表盘</li>
         <li class="screen">炫丽大屏</li>
       </ul>
+      <div v-else class="back_screen" >
+          <h3 class="titlecharst" >
+              {{titlestate.titles}}
+          </h3>
+          <ul class="scree_list">
+              <li class="back" @click="closeScreen">
+
+              </li>
+          </ul>
+      </div>
     </header>
 </template>
 <style scoped>
+   .titlecharst{
+     margin-left:20px;
+   }
+   .back_screen{
+       display:flex;
+       flex-direction: row;
+       justify-content: space-between;
+       height:100%;
+       align-items: center;
+       background:#fbfbfb;
+   }
+   .back{
+       width:70px;
+       height:73px;
+       background:#eaeaea url(/static/common/images/back.png)no-repeat center;
+   }
   header{
      height:73px;
      position:absolute;
@@ -117,10 +143,17 @@
 <script>
 
     export default{
+        props:['titlestate'],
         data(){
             return {
 
                 msg: 'hello vue'
+            }
+        },
+        methods:{
+            closeScreen(){
+                //console.log('a')
+                this.$store.dispatch('onscreen',{typeState:false,title:'',echarts:{}})
             }
         },
 

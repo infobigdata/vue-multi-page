@@ -1,9 +1,9 @@
 <template>
     <div class="layer">
-        <div class="laye_box">
+        <div v-if="showElesOne" class="laye_box_1">
           <nav class="laye_title">
               <span class="left_text">使用模板方式</span>
-              <span class="right_bnt"></span>
+              <span class="right_bnt" @click="hide(0)"></span>
           </nav>
           <section>
             <form>
@@ -32,13 +32,57 @@
             </form>
           </section>
           <footer>
-                <button class="confirm bntact" :class="{mouseact:bntacts}" @mouseover="addcls('on')" @mouseout="addcls('off')">
+                <button
+                    @click="selectOk(true)"
+                    class="confirm bntact"
+                    :class="{mouseact:bntacts}"
+                    @mouseover="addcls('on')"
+                    @mouseout="addcls('off')"
+                   >
                   确定
                 </button>
-                <button class="cancel" >
+                <button class="cancel"
+                        @click="selectOk(false)"
+                >
                   取消
                 </button>
           </footer>
+        </div>
+        <div v-if="showElesTwo" class="laye_box_2">
+            <nav class="laye_title">
+                <span class="left_text">上传填充数据</span>
+                <span class="right_bnt" @click="hide(1)"></span>
+            </nav>
+            <section>
+                <form>
+                    <ul>
+                        <li class="layer-2">
+                            <img src="/static/common/images/sctcsj.png">
+                            <div class="layout">
+                                <div class="flexlayeout">
+                                <span>复制模板,并下载模板数据</span>
+                                <span>填充下载的模板数据表，并上传至Runup替换原有的模板数据</span>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </form>
+            </section>
+            <footer>
+                <button
+                    class="confirm bntact uploder"
+                    @click="uploadDatas(true)"
+                    :class="{mouseact:bntacts}"
+                    @mouseover="addcls('on')"
+                    @mouseout="addcls('off')">
+                    立即上传替换
+                </button>
+                <button class="cancel hot_uploder"
+                        @click="uploadDatas(false)">
+                    稍后上传替换
+                </button>
+            </footer>
         </div>
     </div>
 </template>
@@ -51,13 +95,21 @@
      right:0;
      background:rgba(0,0,0,0.5);
    }
-   .laye_box{
+   .laye_box_1{
      width:600px;
      position:absolute;
      top:50%;
      left:50%;
      transform: translate(-50% ,-50%);
      background:#fff;
+   }
+   .laye_box_2{
+       width:600px;
+       position:absolute;
+       top:50%;
+       left:50%;
+       transform: translate(-50% ,-50%);
+       background:#fff;
    }
    .right_bnt{
      width:10px;
@@ -89,6 +141,25 @@
      justify-content:flex-start;
      align-items:flex-start;
 
+   }
+   .layer-2{
+       display:flex;
+       flex-direction: row;
+       justify-content:flex-start;
+   }
+   .layer-2 img{
+       margin-right:10px;
+   }
+   .layer-2 .layout{
+      align-self: stretch;
+
+   }
+
+   .flexlayeout{
+       height:100%;
+       display:flex;
+       flex-direction: column;
+       justify-content: space-between;
    }
    section ul li label{
      margin-top:4px;
@@ -150,21 +221,23 @@
             return {
               bntacts:false,
               radiosArr:[
-                {cheked:true,text:"将模板复制到仪表盘中，并下载所有模板数据下载模板数据 >填充模板数据 >替换模板", id:'rads'},
+                {cheked:true,text:"将模板复制到仪表盘中，并下载所有模板数据下载模板数据 >填充模板数据 >替换模板",  id:'rads'},
 
                 {cheked:false,text:"将模板复制到仪表盘中，并下载所有模板数据下载模板数据 >填充模板数据 >替换模板", id:'radse'}
-              ]
+              ],
+              showElesOne:true,
+                showElesTwo:false
 
             }
         },
         methods:{
-           addcls(ev){
+            addcls(ev){
              if(ev==='on')
              this.bntacts = true;
              else
                this.bntacts = false;
            },
-          checkoption(event,index){
+            checkoption(event,index){
             const ev = event.srcElement || event.target
             for(var t = 0; t<this.radiosArr.length; t++){
               if(t==index){
@@ -175,20 +248,62 @@
             }
 
           },
-          mouseHover(index,stateType){
+            mouseHover(index,stateType){
             var actcls = this.radiosArr[index].cheked;
-            if(stateType){
-              if(!actcls){
-                this.radiosArr[index].cheked= !actcls
 
-              }
-            }else{
-              this.radiosArr[index].cheked= !actcls
+
+          },
+            hide(index){
+
+                if(index == 0){
+                    this.$emit('hiden','ture')
+                }else{
+                    this.showElesOne = true
+                    this.showElesTwo = false
+                    this.$emit('hiden','ture')
+                }
+
+            },
+            selectOk(confirm){
+                if(confirm){
+                    var index = 0
+                    for(let t = 0; t<this.radiosArr.length; t++){
+                        if(this.radiosArr[t].cheked){
+                            index = t;
+                            console.log(index)
+                            break;
+                        }
+                    }
+
+                    if(index == 0){
+                        this.showElesOne = false;
+                        setTimeout(()=>{
+                            this.showElesTwo = true;
+                        },500)
+                    }else{
+                      //跳转到仪表盘
+                        this.$emit('hiden','ture')
+                    }
+
+                }else{
+
+                    this.$emit('hiden','ture')
+                }
+
+            },
+            uploadDatas(at){
+               if(at){
+                   // 跳转到替换数据的页面
+                   this.showElesOne = true
+                   this.showElesTwo = false
+                   this.$emit('hiden','ture')
+               }else{
+                   //跳转到仪表盘页面；
+                   this.showElesOne = true
+                   this.showElesTwo = false
+                   this.$emit('hiden','ture')
+               }
             }
-
-            console.log(actcls)
-
-          }
         },
 
         components: {}
