@@ -161,8 +161,6 @@ export default{
                             }
                         }
                         $.fn.zTree.init($("#treeDom"), setting, zNodes);
-                    }else{
-
                     }
                     self.$nextTick(function(){
                         self.addMethod();

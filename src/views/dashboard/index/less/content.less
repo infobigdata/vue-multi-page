@@ -1,4 +1,3 @@
-
 .section_0 {
   margin-left: 260px;
   height: 100%;
@@ -12,4 +11,96 @@
   height: 100%;
   padding-top: 98px;
   box-sizing: border-box;
+}
+
+
+/*仪表盘内容区*/
+
+.nav_2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.tybp_h2 {
+    height: 70px;
+    line-height: 70px;
+    padding-left: 30px;
+    margin-right: 400px;
+    overflow: hidden;
+    font-size: 24px;
+    color: #333333;
+    background-image: -webkit-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);
+    border-left: 1px solid #eeeeee;
+}
+
+.nav_2_div {
+    width: 400px;
+    height: 70px;
+    padding-right: 40px;
+    background-image: -webkit-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(246, 246, 246) 0%, rgb(255, 255, 255) 100%);
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.nav_2_div_a {
+    float: right;
+    margin-left: 30px;
+}
+
+.nav_2_div_a.thmb {
+    margin-left: 0;
+}
+
+.nav_2_div_a i {
+    display: block;
+    width: 25px;
+    height: 23px;
+    margin: 12px auto 6px;
+    background: url('../images/nav_2_off.png') 0 0 no-repeat;
+}
+
+.nav_2_div_a:hover i {
+    background-image: url('../images/nav_2_on.png');
+}
+
+.nav_2_div_a span {
+    display: block;
+    line-height: 1;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #333333;
+}
+
+.nav_2_div_a:hover span {
+    color: #0066ff;
+}
+
+.thmb i {
+    background-position: 0 0;
+}
+
+.tjtb i {
+    background-position: 0 -30px;
+}
+
+.dcybp i {
+    background-position: 0 -60px;
+}
+
+.fxybp i {
+    background-position: 0 -90px;
+}
+
+.symb i {
+    background: url('../images/shiyongmb.png') 0 0 no-repeat;
+}
+
+.nav_2_div_a.symb:hover i {
+    background: url('../images/shiyongmb_on.png') 0 0 no-repeat;
 }
