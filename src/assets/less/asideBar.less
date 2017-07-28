@@ -17,32 +17,13 @@
     position: relative;
 }
 
-.xingjian,.zhankaisq,.piliangydsc {
+ .xingjian,.zhankaisq,.piliangydsc {
     width: 21px;
     height: 20px;
     position: absolute;
     right: 0;
     top: 0;
     display: block;
-
-    &_xq{
-        width: 100px;
-        height: auto;
-        padding: 6px 0;
-        p{
-            height: 24px;
-            line-height: 24px;
-            margin: 6px 0;
-            font-size: 14px;
-            color: #666666;
-            text-align: center;
-            cursor: pointer;
-            &:hover{
-                color: #0066ff;
-                background-color: #EEEEEE;
-            }
-        }
-    }
     i {
         display: block;
         width: 21px;
@@ -50,6 +31,10 @@
         cursor: pointer;
         background-position: center;
         background-repeat: no-repeat;
+    }
+    .treeDropMenu{
+        width: 100px;
+        position: absolute;
     }
     &:hover .treeDropMenu{
         display: block;
@@ -69,7 +54,7 @@
 .search{
     position: relative;
     width: 228px;
-    margin: 5px 14px 14px;
+    margin: 5px auto 14px;
     &-text{
         width: 228px;
         height: 30px;

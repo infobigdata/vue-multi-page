@@ -15,6 +15,7 @@
             padding: 0;
             padding-left: 15px;
             vertical-align: middle;
+            color: #333;
             &.curSelectedNode {
                 color: #2968f6;
                 border: none !important;
@@ -23,7 +24,7 @@
             }
             &:hover {
                 background-color: #f6f6f6;
-                text-decoration: none;
+
             }
 
         }
@@ -44,16 +45,7 @@
                 }
             }
             span{
-                &.node_name{
-                    margin-left: 10px !important;
-                    input {
-                        height: 30px !important;
-                        line-height: 30px !important;
-                        outline: none;
-                        border: none;
-                        background: none;
-                    }
-                }
+
                 &.button{
                     &.ico_docu{
                         background: url('http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_3.png') 0 0 no-repeat;
@@ -86,8 +78,25 @@
         }
     }
     span{
+        &.node_name{
+            margin-left: 10px;
+            margin-left: 10px;
+            width: 142px;
+            overflow: hidden;
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            input {
+                height: 30px;
+                line-height: 30px;
+            }
+        }
         &.button{
-
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            vertical-align: middle;
             &.switch{
                 display: none;
             }
@@ -100,7 +109,13 @@
                     display: none !important;
                 }
                 &.remove{
-                    background-image: url(../img/xiangqing_z.png);
+                    background-image: url(http://dev-web.runupdata.com/js/zTree_v3/img/xiangqing_z.png);
+                    &:hover {
+                        background-image: url(http://dev-web.runupdata.com/js/zTree_v3/img/xiangqing_z_on.png);
+                    }
+                }
+                &.ico_docu {
+                    background: url(http://dev-web.runupdata.com/js/zTree_v3/img/gzb_sj.png) 0 0 no-repeat;
                 }
             }
         }
@@ -108,25 +123,9 @@
 }
 
 
-// .treeDom .dashboard>a span.button.edit {
-//     display: none !important;
-// }
-
-// .treeDom .dashboard>a span.button.remove {
-//     background-image: url(../img/xiangqing_z.png);
-// }
-
-// .treeDom .dashboard>a span.button.remove:hover {
-//     background-image: url(../img/xiangqing_z_on.png);
-// }
-
-// .treeDom_gzb li li span.button.ico_docu {
-//     background: url(../img/gzb_sj.png) 0 0 no-repeat;
-// }
-
-// .treeDom_gzb li li a:hover span.button.ico_docu,
-// .treeDom_gzb li li a.curSelectedNode span.button.ico_docu {
-//     background: url(../img/gzb_sj_on.png) 0 0 no-repeat;
-// }
 
 
+.treeDom_gzb li li a:hover span.button.ico_docu,
+.treeDom_gzb li li a.curSelectedNode span.button.ico_docu {
+    background: url(http://dev-web.runupdata.com/js/zTree_v3/img/gzb_sj_on.png) 0 0 no-repeat;
+}
