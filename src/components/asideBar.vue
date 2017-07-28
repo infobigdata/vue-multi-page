@@ -6,19 +6,15 @@
                 <a class="xingjian">
                     <i></i>
                     <div class="treeDropMenu">
-                        <div class="xingjian_xq">
-                            <p @click="addFolder()">新建文件夹</p>
-                            <p @click="addDashboard()">新建仪表盘</p>
-                        </div>
+                        <p @click="addFolder()">新建文件夹</p>
+                        <p @click="addDashboard()">新建仪表盘</p>
                     </div>
                 </a>
                 <a class="zhankaisq">
                     <i></i>
                     <div class="treeDropMenu">
-                        <div class="zhankaisq_xq">
-                            <p @click="collapseAll()">收起全部</p>
-                            <p @click="expandAll()">展开全部</p>
-                        </div>
+                        <p @click="collapseAll()">收起全部</p>
+                        <p @click="expandAll()">展开全部</p>
                     </div>
                 </a>
             </div>
@@ -26,7 +22,7 @@
         <div class="search">
             <input class="search-text" type="text" autocomplete="off" placeholder="输入关键字搜索" />
             <input class="search-submit" type="submit" value="" />
-            <div class="nav_1_form_ss_xq MScroll" id="tipContent">
+            <div class="search-result-box MScroll" id="tipContent">
                 <div id="content"></div>
             </div>
         </div>
@@ -37,7 +33,7 @@
     export default{
         data(){
             return {
-
+                result : []
             }
         },
         methods: {
