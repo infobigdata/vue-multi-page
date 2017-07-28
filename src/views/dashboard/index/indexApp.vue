@@ -175,7 +175,6 @@ export default{
 
         },
         onClick(e, treeId, treeNode){
-            // $("#dashboard_name").html(treeNode['sourceName']);
             var id = treeNode['id'];
             var pId = treeNode['pId'];
             storageService.setParameter("dashboard_id", id);
@@ -246,8 +245,7 @@ export default{
         },
         addMethod(){
             const self = this;
-
-            // var tree_xiangqing_bianji = $('#tree_xiangqing_bianji');
+            let thisTime;
             $('#treeDom').on('mouseover', '.dashboard span.button.remove', function() {
                 const $this = $(this),
                       toolsTop = $this.offset().top,
@@ -269,54 +267,11 @@ export default{
                     }
                 }
             })
-
-            //     if(tree_xiangqing_bianji.height() + $(this).offset().top + 10 <= $(window).height()) {
-            //         tree_xiangqing_bianji.css({
-            //             'display': 'block',
-            //             'top': $(this).offset().top
-            //         });
-            //         tree_xiangqing_bianji.find('ii').css('display', '');
-            //     } else {
-            //         tree_xiangqing_bianji.css({
-            //             'display': 'block',
-            //             'top': $(this).offset().top - (tree_xiangqing_bianji.height() + 36)
-            //         });
-            //         tree_xiangqing_bianji.find('ii').css('display','block');
-            //     }
-
-            //     var treeObj = $.fn.zTree.getZTreeObj('treeDom'),
-            //     node = treeObj.getNodes(),
-            //     nodes = treeObj.transformToArray(node);
-            //     var thisId = this.parentNode.parentNode.id;
-
-            //     for(var i = 0, len = nodes.length; i < len; i++) {
-            //         if(nodes[i]['tId'] == thisId) {
-            //             $('#thiszTreeId').val(nodes[i]['id']);
-            //             break;
-            //         }
-            //     }
-            // });
-
-            // var thisTime;
-            // $('#treeDom').on('mouseout', '.dashboard span.button.remove', function() {
-            //     clearInterval(thisTime);
-            //     thisTime = setTimeout(function() {
-            //         tree_xiangqing_bianji.css('display', 'none')
-            //     }, 30);
-            // });
-            // tree_xiangqing_bianji.mouseenter(function() {
-            //     clearInterval(thisTime);
-            // });
-
-            // tree_xiangqing_bianji.mouseleave(function() {
-            //     thisTime = setTimeout(function() {
-            //         tree_xiangqing_bianji.css('display', 'none')
-            //     }, 30);
-            // });
-
-            // tree_xiangqing_bianji.find('p').click(function() {
-            //     tree_xiangqing_bianji.css('display', 'none');
-            // });
+            .on('mouseout', '.dashboard span.button.remove', function() {
+                self.tips.toolStyleObject = {
+                    display: 'none'
+                }
+            });
         },
         folderEdit(){
             let self = this;

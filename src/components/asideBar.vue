@@ -33,8 +33,9 @@
 </template>
 
 <script>
-    import { searchListData } from 'src/api/getDate.js'
-
+    //import { searchListData } from 'src/api/getDate.js'
+    import folder from 'assets/js/folder'
+    import dashboard from 'assets/js/dashboardCRUD'
     export default{
         data(){
             return {
@@ -45,16 +46,16 @@
         },
         methods: {
             addFolder(){
-                alert('addFolder')
+                folder.add()
             },
             addDashboard(){
-                alert('addDashboard')
+                dashboard.add()
             },
             collapseAll(){
-                alert('collapseAll')
+                $.fn.zTree.getZTreeObj('treeDom').expandAll(false);
             },
             expandAll(){
-                alert('expandAll')
+                $.fn.zTree.getZTreeObj('treeDom').expandAll(true);
             },
             search(ev) {
                 let self = this;
