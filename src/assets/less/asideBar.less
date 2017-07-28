@@ -55,6 +55,11 @@
     position: relative;
     width: 228px;
     margin: 5px auto 14px;
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track,::-webkit-scrollbar-thumb{border-radius:999px;border:6px solid #ebedf0;}
+    ::-webkit-scrollbar-track{box-shadow:1px 1px 5px rgba(0,0,0,.2) inset;}
+    ::-webkit-scrollbar-thumb{min-height:20px;background-clip:content-box;border:6px solid #06f;}
+    ::-webkit-scrollbar-corner{background:transparent;}
     &-text{
         width: 228px;
         height: 30px;
@@ -89,11 +94,30 @@
         border: 1px solid #ccc;
         border-radius: 3px;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow-y: scroll;
         position: absolute;
         left: 0;
         top: 36px;
         z-index: 9;
-        display: none;
+
+        .emptyResult{
+            padding: 0 12px;
+            line-height: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: #000;
+        }
+        li{
+            padding: 5px 12px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+            &:hover{
+                background: #eee;
+            }
+        }
     }
 }

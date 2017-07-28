@@ -20,20 +20,27 @@
             </div>
         </div>
         <div class="search">
-            <input class="search-text" type="text" autocomplete="off" placeholder="输入关键字搜索" />
+            <input class="search-text" type="text" autocomplete="off"  v-model="keyword"  @keyup='search($event)' @focus="show()" @blur='hide()' placeholder="输入关键字搜索" />
             <input class="search-submit" type="submit" value="" />
-            <div class="search-result-box MScroll" id="tipContent">
-                <div id="content"></div>
+            <div class="search-result-box MScroll" v-show="keyword.length>0 && isHide">
+                <div id="content" v-if="result.length == 0"><p class="emptyResult">没有找到相关结果</p></div>
+                <div id="content" v-else>
+                    <li v-for="(item, index) in result">{{item}}</li>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { searchListData } from 'src/api/getDate.js'
+
     export default{
         data(){
             return {
-                result : []
+                result : [],
+                keyword:'',
+                isHide: false
             }
         },
         methods: {
@@ -48,6 +55,28 @@
             },
             expandAll(){
                 alert('expandAll')
+            },
+            search(ev) {
+                let self = this;
+                self.isHide = true;
+                $.ajax({
+                    type : 'get',
+                    url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                    data: {
+                        wd: this.keyword
+                    },
+                    dataType: 'jsonp',
+                    jsonp: 'cb',
+                    success: function(res){
+                        self.result = res.s;
+                    }
+                })
+            },
+            show(){
+                this.isHide = true
+            },
+            hide(){
+                this.isHide = false
             }
         }
     }
