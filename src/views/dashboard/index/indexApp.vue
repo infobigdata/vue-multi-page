@@ -42,6 +42,7 @@ import Base from 'assets/js/base';
 
 require('assets/less/ztree.less')
 require('./less/content.less')
+require('assets/less/gridster.less')
 
 import leftBar from 'components/leftBar';
 import ZHeader from 'components/Header';
