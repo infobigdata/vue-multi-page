@@ -1,3 +1,7 @@
+import * as template from 'src/api/getDate.js'
+import chart_option_event from 'assets/js/chart_option_event.js'
+import storageService from 'assets/js/storage.js'
+
 var dashboard = {
   initPage : function() {
     /*初始化左边文件夹树结构*/
@@ -122,7 +126,7 @@ var dashboard = {
                       triggerDownload[0].click();
                       triggerDownload.remove();
                       layer.closeAll();
-                      console.log(111)
+                      // console.log(111)
                     }
                   }
                   //document.removeChild(img);
@@ -192,14 +196,16 @@ var dashboard = {
     });
   },
   flushCharts: function(charts){
-    $.ajax({
+    /*$.ajax({
       type: "post",
       url: "/chart/fills",
       data: {
         id: charts
       },
-      success: function(json){
-        if(json.status == "success"){
+      success: function(json){*/
+    template.getCharts().then(data => {
+        var json = data
+        // if(json.status == "success"){
           var charts = json.data;
           for(var i = 0; i < charts.length; i++){
             var chart = charts[i];
@@ -240,12 +246,11 @@ var dashboard = {
               });
             }
           }
-        }
-        if(json.status == "error"){
-          layer.msg(json.message);
-        }
-      }
-    });
+        // }
+        // if(json.status == "error"){
+        //   layer.msg(json.message);
+        // }
+      });
   },
   flushChart: function(chart_id){
     $.ajax({
