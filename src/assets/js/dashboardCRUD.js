@@ -1,4 +1,34 @@
 import layerUtils from './layerUtils'
+import * as template from 'src/api/getDate.js'
+import common from './common.js'
+
+function lenStat (target){
+        var strlen=0; //初始定义长度为0
+        var txtval = $.trim(target);
+        for(var i=0;i<txtval.length;i++){
+         if(common.isChinese(txtval.charAt(i))==true){
+          strlen=strlen+2;//中文为2个字符
+         }else{
+          strlen=strlen+1;//英文一个字符
+         }
+        }
+        strlen=Math.ceil(strlen/2);//中英文相加除2取整数
+        return strlen;
+    }
+
+
+function checkLen(str, min, max, lessMsg, moreMsg){
+    var length = lenStat(str);
+    if(length < min){
+        layer.msg(lessMsg);
+        return false;
+    }
+    if(length > max){
+        layer.msg(moreMsg);
+        return false;
+    }
+    return true;
+}
 
 var dashboard = {
     add: function(){
@@ -9,7 +39,7 @@ var dashboard = {
         success: function(json){
           if(json.status == "success"){
             var html = json.data;
-            layerUtils.layer_content("新建仪表盘", layer_common_size, html, function(){
+            layerUtils.layer_content("新建仪表盘", layerUtils.layer_common_size, html, function(){
               folderZtree.initZtree(true, 1);
               $('#add_dashboard').mCustomScrollbar({
                 scrollButtons: {
@@ -20,7 +50,7 @@ var dashboard = {
                 },
                 horizontalScroll: false,
               });
-              tag();
+              //tag();
             }, function(){
               var folderId = $("#folder_id").val();
               var dashboardName = $("#add_boardname").val();
@@ -80,7 +110,7 @@ var dashboard = {
         success : function(json){
           if(json.status == "success"){
             var html = json.data;
-            layerUtils.layer_content("删除仪表盘", layer_common_size, html, function(){
+            layerUtils.layer_content("删除仪表盘", layerUtils.layer_common_size, html, function(){
 
             }, function(){
               layer.closeAll();
@@ -240,17 +270,19 @@ var dashboard = {
     },
     edit: function(){
       var dashboardId = $("#thiszTreeId").val();
-      $.ajax({
+      /*$.ajax({
         type : "post",
         url : "/dashboard/editTemplate",
         data : {
           dashboardId : dashboardId,
         },
         success : function(json) {
-          if (json.status == "success") {
+          if (json.status == "success") {*/
+        template.getTpl().then(data => {
+            var json = data.edit;
             var html = json.data;
-            layerUtils.layer_content("编辑仪表盘", layer_common_size, html, function() {
-              tag();
+            layerUtils.layer_content("编辑仪表盘", layerUtils.layer_common_size, html, function() {
+              //tag();
             }, function() {
               var dashboard_id = $("#dashboard_id").val();
               var dashboard_name = $("#edit_dashboard_name").val();
@@ -270,11 +302,11 @@ var dashboard = {
               layer.closeAll();
               dashboard.editConfirm(data, dashboard_id);
             });
-          }
-          if(json.status == "error"){
-            layer.msg(json.message);
-          }
-        }
+          // }
+          // if(json.status == "error"){
+          //   layer.msg(json.message);
+          // }
+        // }
       });
     },
     editConfirm : function(data, dashboard_id) {

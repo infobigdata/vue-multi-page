@@ -234,6 +234,7 @@ var dashboard = {
               var _scale = _width<_height?_width:_height;
               $('.semantic-view-22').css('transform', 'scale(' + _scale + ')');
             }else{
+                    // console.log('storageService:'+JSON.stringify(storageService))
               option.theme = storageService.getTheme();
               option = chart_option_event.addTooltipFormatter(chartType, option);
               chart_option_event.renderTheme(chartType,option);

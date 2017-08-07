@@ -1,6 +1,6 @@
 const layerUtils = {
-    common_size: '600px',
-    small_size: '400px',
+    layer_common_size: '600px',
+    layer_small_size: '400px',
     layer_content: function(title, size, html, init, fn){
         layer.open({
             title: title,
