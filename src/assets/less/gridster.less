@@ -1,0 +1,124 @@
+@import url('common.less');
+/*仪表盘展示区*/
+
+.gridster {
+    margin: 20px;
+}
+
+.gridster ul {
+    width: 100% !important;
+}
+.gridster li{
+    position: relative;
+}
+.gridster li.gs-w {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.gridster li.gs-w:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    z-index: 9;
+}
+
+.gridster_p {
+    width: calc(100% - 140px);
+    height: 18px;
+    float: left;
+    margin-top: -10px;
+    margin-left: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(10, 18, 32, .87);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gridster .handleBox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    cursor: move;
+}
+
+.gridster .gs-resize-handle-both {
+    bottom: 0px;
+    right: 0px;
+    background: url('@{themes}/suofang.png') 0 0 no-repeat;
+}
+
+.gridster .gs-resize-handle-both:hover {
+    background: url('@{themes}/suofang_on.png') 0 0 no-repeat;
+}
+
+.gridster .contentBox {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    background: #FFFFFF;
+}
+.gridster li:hover .ss-headline {
+    width: calc(100% - 152px);
+}
+.gridster .ss-headline {
+    width: 100%;
+    float: left;
+    color: rgba(10,18,32,.87);
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0;
+}
+.xgicon {
+    height: 18px;
+    float: right;
+    font-size: 0;
+    opacity: 0;
+    display:none;
+}
+
+.gridster li:hover .xgicon {
+    opacity: 1;
+    display:block
+}
+
+.xgicon a {
+    display: inline-block;
+    width: 24px;
+    height: 18px;
+    background: url('@{themes}/xgicon.png') 0 0 no-repeat;
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.xgicon a:hover {
+    background-image: url('@{themes}/xgicon_on.png');
+}
+
+.xgicon .xg_suaxing {
+    background-position: 0 0;
+}
+
+.xgicon .xg_biaji {
+    background-position: 0 -20px;
+}
+
+.xgicon .xg_quanping {
+    background-position: 0 -40px;
+}
+
+.xgicon .xg_shujugx {
+    background-position: 0 -60px;
+}
+
+.xgicon .xg_gengduo {
+    background-position: 0 -80px;
+    margin-left: 0;
+}
