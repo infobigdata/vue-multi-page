@@ -53,6 +53,7 @@ import { treeListData } from 'src/api/getDate.js'
 import storageService from 'assets/js/storage'
 import gridsterTool from 'assets/js/gridster'
 import folder from 'assets/js/folder'
+import dashboard from 'assets/js/dashboardCRUD'
 
 export default{
     components: {
@@ -288,45 +289,7 @@ export default{
         },
         folderEdit(){
             let self = this;
-            $.ajax({
-                type : "post",
-                url : "/dashboard/editTemplate",
-                data : {
-                    dashboardId : self.folderId,
-                },
-                success : function(json) {
-                    if (json.status == "success") {
-                        var html = json.data;
-                        layer_content("编辑仪表盘", layer_common_size, html, function() {
-                            tag();
-                        }, function() {
-                            var dashboard_id = $("#dashboard_id").val();
-                            var dashboard_name = $("#edit_dashboard_name").val();
-                            var tag_id = $("#tag_id").val();
-                            var description = $("#description").val();
-                            var nameFlag = checkLen(dashboard_name, 1, 100, "仪表盘名称不可为空", "仪表盘名称不可超过100个字");
-                            var descriptionFlag = checkLen(description, 0, 100, "", "仪表盘备注不可超过100个字");
-                            if(!nameFlag || !descriptionFlag){
-                                return false;
-                            }
-                            var data = {
-                                id: dashboard_id,
-                                name: dashboard_name,
-                                tagId: tag_id,
-                                description: description,
-                            }
-                            layer.closeAll();
-                            dashboardEdit.confirm(data, dashboard_id);
-                        });
-                    }
-                    if(json.status == "error"){
-                        layer.msg(json.message);
-                    }
-                },
-                error: function(res){
-                    alert('error:'+res.status)
-                }
-            });
+            dashboard.edit()
         },
         folderCopy(){
             console.log('Copy')
