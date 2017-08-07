@@ -1,5 +1,5 @@
 import storageService from 'assets/js/storage'
-
+import dashboard from 'assets/js/dashboard'
 import * as template from 'src/api/getDate.js'
 
 var gridsterTool = {
