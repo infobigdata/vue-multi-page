@@ -16,6 +16,18 @@ export const template = {
         "total":0,
         "rows":null,
         "listBean":null
+    },
+    edit: {
+        "statusCode": "200",
+        "status": "success",
+        "message": null,
+        "data": "<div class=\"Mlayer_4_box text_c\">\r\n\t<input type=\"hidden\" id=\"dashboard_id\" value=\"825\" />\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">仪表盘名称：</span>\r\n\t\t<input class=\"Mlayer_input\" id=\"edit_dashboard_name\" type=\"text\" value=\"5\" placeholder=\"请输入文件夹名称\" />\r\n\t</p>\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">分类标签：</span>\r\n\t\t<input class=\"Mlayer_input\" id=\"tag_name\" type=\"text\" value=\"\" placeholder=\"请输入分类标签\" />\r\n\t\t<input type=\"hidden\" id=\"tag_id\" value=\"\"/>\r\n\t</p>\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">仪表盘备注：</span>\r\n\t\t<textarea class=\"Mlayer_input\" id=\"description\" type=\"text\" placeholder=\"请输入图块备注\" style=\"height: 90px;\"></textarea>\r\n\t</p>\r\n</div>\r\n",
+        "map": null,
+        "page": null,
+        "queryBean": null,
+        "total": 0,
+        "rows": null,
+        "listBean": null
     }
 
 }
