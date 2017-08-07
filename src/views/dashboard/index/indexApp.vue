@@ -266,10 +266,24 @@ export default{
                 }
             })
             .on('mouseout', '.dashboard span.button.remove', function() {
-                self.tips.toolStyleObject = {
-                    display: 'none'
-                }
+                clearInterval(thisTime);
+                thisTime = setTimeout(function() {
+                    self.tips.toolStyleObject = {
+                        display: 'none'
+                    }
+                }, 30);
+            })
+            $('.treeDropTools').on('mouseenter',function() {
+                clearInterval(thisTime);
+            })
+            .on('mouseleave',function() {
+                thisTime = setTimeout(function() {
+                    self.tips.toolStyleObject = {
+                        display: 'none'
+                    }
+                }, 30);
             });
+
         },
         folderEdit(){
             let self = this;
