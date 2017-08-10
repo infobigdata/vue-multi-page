@@ -1,6 +1,7 @@
 import layerUtils from './layerUtils'
 import * as template from 'src/api/getDate.js'
 import common from './common.js'
+import folder from './folder.js'
 
 function lenStat (target){
         var strlen=0; //初始定义长度为0
@@ -32,16 +33,19 @@ function checkLen(str, min, max, lessMsg, moreMsg){
 
 var dashboard = {
     add: function(){
-      $.ajax({
-        type: "post",
-        url: "/dashboard/addTemplate",
-        data: {},
-        success: function(json){
-          if(json.status == "success"){
+        template.getTpl().then(data => {
+            var json = data.addDashboard;
+      // $.ajax({
+      //   type: "post",
+      //   url: "/dashboard/addTemplate",
+      //   data: {},
+      //   success: function(json){
+      //     if(json.status == "success"){
             var html = json.data;
             layerUtils.layer_content("新建仪表盘", layerUtils.layer_common_size, html, function(){
-              folderZtree.initZtree(true, 1);
-              $('#add_dashboard').mCustomScrollbar({
+              folder.folderZtree(true, 1);
+
+              /*$('#add_dashboard').mCustomScrollbar({
                 scrollButtons: {
                   enable: false,
                   scrollType: "continuous",
@@ -49,7 +53,7 @@ var dashboard = {
                   scrollAmount: 40
                 },
                 horizontalScroll: false,
-              });
+              });*/
               //tag();
             }, function(){
               var folderId = $("#folder_id").val();
@@ -74,11 +78,11 @@ var dashboard = {
               }
               dashboard.addConfirm(data);
             });
-          }
-          if(json.status == "error"){
-            layer.msg(json.message);
-          }
-        }
+        // }
+        //   if(json.status == "error"){
+        //     layer.msg(json.message);
+        //   }
+        // }
       });
     },
     addConfirm: function(data){
