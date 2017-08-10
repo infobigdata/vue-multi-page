@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import Base from 'assets/js/base';
+
 import error from 'components/error';
 
 export default {
@@ -24,11 +26,11 @@ export default {
     },
     methods: {
         init(){
-            let urlString = window.location.search;
-            if (urlString === '') {
-                this.isError = true;
-            }else{
+            let q = Base.C.getUrlQuery('tableid')
+            if (q) {
                 this.isError = false;
+            }else{
+                this.isError = true;
             }
         }
     }
