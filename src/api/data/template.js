@@ -41,6 +41,53 @@ export const template = {
         "rows":null,
         "listBean":null
     },
+    listFolder:{
+        "statusCode":"200",
+        "status":"success",
+        "message":null,
+        "data":[
+            {
+                "id":"3b8b6c2eb4",
+                "pId":"104a2e3521",
+                "name":"投诉分析Gov",
+                "open":false,
+                "xiangqing":null,
+                "xinzeng":false,
+                "oper":null,
+                "flag":null,
+                "folderName":null,
+                "parent":true
+            },{
+                "id":"104a2e3521",
+                "pId":"0",
+                "name":"文明办",
+                "open":false,
+                "xiangqing":null,
+                "xinzeng":false,
+                "oper":null,
+                "flag":null,
+                "folderName":null,
+                "parent":true
+            },{
+                "id":"239",
+                "pId":"3b8b6c2eb4",
+                "name":"投诉分析",
+                "open":false,
+                "xiangqing":null,
+                "xinzeng":false,
+                "oper":null,
+                "flag":null,
+                "folderName":null,
+                "parent":false
+            }
+        ],
+        "map":null,
+        "page":null,
+        "queryBean":null,
+        "total":0,
+        "rows":null,
+        "listBean":null
+    },
     addDashboard:{
         "statusCode":"200",
         "status":"success",

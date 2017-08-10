@@ -1,25 +1,19 @@
 import layerUtils from './layerUtils'
+import * as template from 'src/api/getDate.js'
 
 var folder = {
     add: function(){
-        $.ajax({
+        template.getTpl().then(data => {
+            var json = data.addFolder;
+        /*$.ajax({
             type: "post",
             url: "/folder/addTemplate",
             data: {},
             success : function(json){
-                if(json.status == "success"){
+                if(json.status == "success"){*/
                     var html = json.data;
-                    layerUtils.layer_content("新建文件夹", layerUtils.common_size, html, function(){
-                        folderZtree.initZtree(false, 1);
-                        $('#add_dashboard').mCustomScrollbar({
-                            scrollButtons: {
-                                enable: false,
-                                scrollType: "continuous",
-                                scrollSpeed: 20,
-                                scrollAmount: 40
-                            },
-                            horizontalScroll: false,
-                        });
+                    layerUtils.layer_content("新建文件夹", layerUtils.layer_common_size, html, function(){
+                        folder.folderZtree(false, 1);
                     }, function(){
                         if(json.status == "success"){
                             var folderName = $("#folder_name").val();
@@ -35,12 +29,13 @@ var folder = {
                             layer.msg(json.message);
                         }
                     });
-                }
-                if(json.status == "error"){
-                    layer.msg(json.message);
-                }
-            }
-        });
+        //         }
+        //         if(json.status == "error"){
+        //             layer.msg(json.message);
+        //         }
+        //     }
+        // });
+        })
     },
     addConfirm: function(folderName, folderPid){
         $.ajax({
@@ -107,6 +102,79 @@ var folder = {
                 }
             }
         });
+    },
+    folderZtree: function(flag, type){
+        var setting = {
+            view: {
+                dblClickExpand: false,
+                showLine: false
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: folder.onClick,
+            }
+        };
+        template.getTpl().then(data => {
+            var json = data.listFolder;
+        // $.ajax({
+        //     type: "post",
+        //     url: "/folder/list",
+        //     data: {
+        //         type : type
+        //     },
+        //     success: function(json){
+        //         if(json.status == "success"){
+                    var data = json.data;
+                    var zNodes = [];
+                    var count = 0;
+                    if(data != null && data.length > 0){
+                        for(var i = 0; i < data.length; i++){
+                            var isParnet = data[i].parent;
+                            if(isParnet){
+                                if(flag){
+                                    zNodes[count] = {
+                                            id: data[i].id,
+                                            pId: data[i].pId,
+                                            name: data[i].name,
+                                            sourceName: data[i].name,
+                                            iconOpen: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_2.png',
+                                            iconClose: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png',
+                                            icon: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_2.png'
+                                    }
+                                    count++;
+                                }else{
+                                    var pid = data[i].pId
+                                    if(pid == "0"){
+                                        zNodes[count] = {
+                                                id: data[i].id,
+                                                pId: data[i].pId,
+                                                name: data[i].name,
+                                                sourceName: data[i].name,
+                                                iconOpen: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_2.png',
+                                                iconClose: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_1.png',
+                                                icon: 'http://dev-web.runupdata.com/js/zTree_v3/img/wenjianjia_2.png'
+                                        }
+                                        count++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $.fn.zTree.init($("#folderTreeDom"), setting, zNodes);
+        //         }
+        //         if(json.status == "error"){
+        //             layer.msg(json.message);
+        //         }
+        //     }
+        });
+    },
+    onClick : function(e, treeId, treeNode){
+        $("#viewFolder").html(treeNode['name']);
+        $("#folder_id").val(treeNode['id']);
     }
 }
 
