@@ -1,3 +1,5 @@
+import layer from 'layer'
+
 const layerUtils = {
     layer_common_size: '600px',
     layer_small_size: '400px',
