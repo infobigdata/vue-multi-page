@@ -28,6 +28,30 @@ export const template = {
         "total": 0,
         "rows": null,
         "listBean": null
+    },
+    addFolder:{
+        "statusCode":"200",
+        "status":"success",
+        "message":null,
+        "data":"<div class=\"Mlayer_4_box text_c\">\r\n\t<p class=\"Mlayer_p\" style=\"padding-bottom: 10px;\">\r\n\t\t<span class=\"Mlayer_span\">文件夹名称：</span>\r\n\t\t<input class=\"Mlayer_input\" id=\"folder_name\" type=\"text\" placeholder=\"请输入文件夹名称\" />\r\n\t</p>\r\n\t<div class=\"Mlayer_4_div\" style=\"width: 326px; padding-bottom: 10px;\">\r\n\t\t<span class=\"Mlayer_4_span left text_r\" style=\"width: 86px;\">选择目录：</span>\r\n\t\t<div class=\"xialaBox Mlayer_4_input left\">\r\n\t\t\t<p class=\"xiala_p\" placeholder=\"选择文件夹\" id=\"viewFolder\"><i>选择文件夹</i></p>\r\n\t\t\t<div class=\"xiala_d MScroll\" id=\"add_dashboard\">\r\n\t\t\t\t<ul id=\"folderTreeDom\" class=\"ztree\"></ul>\r\n\t\t\t</div>\r\n\t\t\t<input type=\"hidden\" id=\"folder_id\" />\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n",
+        "map":null,
+        "page":null,
+        "queryBean":null,
+        "total":0,
+        "rows":null,
+        "listBean":null
+    },
+    addDashboard:{
+        "statusCode":"200",
+        "status":"success",
+        "message":null,
+        "data":"<div class=\"Mlayer_4_box text_c\">\r\n\t<div class=\"Mlayer_4_div\" style=\"width: 326px; padding-bottom: 10px;\">\r\n\t\t<span class=\"Mlayer_4_span left text_r\" style=\"width: 86px;\">文件夹名称：</span>\r\n\t\t<div class=\"xialaBox Mlayer_4_input left\">\r\n\t\t\t<p class=\"xiala_p\" placeholder=\"选择文件夹\" id=\"viewFolder\"><i>选择文件夹</i></p>\r\n\t\t\t<div class=\"xiala_d MScroll\" id=\"add_dashboard\">\r\n\t\t\t\t<ul id=\"folderTreeDom\" class=\"ztree\"></ul>\r\n\t\t\t</div>\r\n\t\t\t<input type=\"hidden\" id=\"folder_id\" />\r\n\t\t</div>\r\n\t</div>\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">仪表盘名称：</span>\r\n\t\t<input class=\"Mlayer_input\" id=\"add_boardname\" type=\"text\" placeholder=\"请输入仪表盘名称\" />\r\n\t</p>\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">分类标签：</span>\r\n\t\t<input id=\"tag_name\" class=\"Mlayer_input\" type=\"text\" placeholder=\"请输入分类标签\" />\r\n\t\t<input id=\"tag_id\" type=\"hidden\"/>\r\n\t</p>\r\n\t<p class=\"Mlayer_p\">\r\n\t\t<span class=\"Mlayer_span\">仪表盘备注：</span>\r\n\t\t<input id=\"description\" class=\"Mlayer_input\" type=\"text\" placeholder=\"请输入仪表盘备注\" />\r\n\t</p>\r\n</div>\r\n",
+        "map":null,
+        "page":null,
+        "queryBean":null,
+        "total":0,
+        "rows":null,
+        "listBean":null
     }
 
 }
