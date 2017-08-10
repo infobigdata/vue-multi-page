@@ -58,50 +58,51 @@ var folder = {
         });
     },
     delete: function(folderId, folderName){
-        $.ajax({
-            type : "post",
-            url : "/folder/deleteTemplate",
-            data : {
-                folderId: folderId,
-                folderName: folderName
-            },
-            //url: 'http://localhost:8002/static/api/deleteTemplate.js',
-            success : function(json){
-                if(json.status == "success"){
+        template.getTpl().then(data => {
+            var json = data.deleteFolder;
+        // $.ajax({
+        //     type : "post",
+        //     url : "/folder/deleteTemplate",
+        //     data : {
+        //         folderId: folderId,
+        //         folderName: folderName
+        //     },
+        //     success : function(json){
+        //         if(json.status == "success"){
                     var html = json.data;
-                    layerUtils.layer_content("删除文件夹", layerUtils.common_size, html, function(){
+                    layerUtils.layer_content("删除文件夹", layerUtils.layer_common_size, html, function(){
 
                     }, function(){
                         layer.closeAll();
                         folder.deleteConfirm(folderId);
                     });
-                }
-                if(json.status == "error"){
-                    layer.msg(json.message);
-                }
-            },
-            error(json){
-                var res = json.responseText;
-                layerUtils.layer_content("删除文件夹",layerUtils.common_size,'<h1>Hello World</h1>')
-            }
+            //    }
+            //     if(json.status == "error"){
+            //         layer.msg(json.message);
+            //     }
+            // },
+            // error(json){
+            //     var res = json.responseText;
+            //     layerUtils.layer_content("删除文件夹",layerUtils.layer_common_size,'<h1>Hello World</h1>')
+            // }
         });
     },
     deleteConfirm: function(folderId){
-        $.ajax({
-            type: "post",
-            url: "/folder/delete",
-            data: {
-                id : folderId
-            },
-            success: function(json){
-                if(json.status == "success"){
-                    dashboardMenuZtree.initZtree();
-                }
-                if(json.status == "error"){
-                    layer.msg(json.message);
-                }
-            }
-        });
+        // $.ajax({
+        //     type: "post",
+        //     url: "/folder/delete",
+        //     data: {
+        //         id : folderId
+        //     },
+        //     success: function(json){
+        //         if(json.status == "success"){
+        //             dashboardMenuZtree.initZtree();
+        //         }
+        //         if(json.status == "error"){
+        //             layer.msg(json.message);
+        //         }
+        //     }
+        // });
     },
     folderZtree: function(flag, type){
         var setting = {

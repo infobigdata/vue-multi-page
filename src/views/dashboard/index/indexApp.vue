@@ -187,7 +187,7 @@ export default{
         },
         beforeRemove(treeId, treeNode){
             if(treeNode.isParent){
-                folderDelete.init(treeNode['id'], treeNode['name']);
+                folder.delete(treeNode['id'], treeNode['name']);
             }
             return false;
         },
