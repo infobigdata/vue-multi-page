@@ -1,0 +1,301 @@
+.body-style{
+    background-color: #eeeeee;
+    font-size: 14px;
+    color: #333333;
+}
+.data-header{
+    width: 100%;
+    height: 98px;
+    line-height: 98px;
+    background-color: #fbfbfb;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    .logo{
+        width: 70px;
+        height: 98px;
+        line-height: 98px;
+        background-color: #222633;
+        position: relative;
+        float: left;
+        text-align: center;
+        img{
+            vertical-align: middle;
+        }
+    }
+    .title{
+        display: inline-block;
+        h3{
+            font-size: 24px;
+            color: #333;
+            margin-left: 30px;
+        }
+    }
+    .action{
+        position: absolute;
+        right: 94px;
+        top: 0;
+        .action-button{
+            width: 80px;
+            height: 32px;
+            box-sizing: border-box;
+            border-color: #0066ff;
+            color: #0066ff;
+            &:hover{
+                background-color:#0066ff;
+                color: #fff;
+            }
+            &.active{
+                background-color:#0066ff;
+                color: #fff;
+            }
+            &+.action-button{
+                margin-left: 10px;
+            }
+        }
+    }
+    .back {
+        float: right;
+        width: 60px;
+        background-color: #eaeaea;
+        background-image: url('../images/back.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 98px;
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 0;
+    }
+
+}
+
+
+.process{
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    line-height: normal;
+    margin-top: -66px;
+    &>span{
+        display: inline-block;
+        width: 300px;
+        height: 2px;
+        background-color: rgb(204, 204, 204);
+        z-index: 2;
+        position: relative;
+        i{
+            font-weight: normal;
+            font-style: normal;
+        }
+        .no{
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            background-color: #ccc;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            overflow: hidden;
+            color: #fff;
+            position: absolute;
+            &.finish{
+                box-sizing: border-box;
+                background-color: #fff;
+                border: 1px solid #0066ff;
+                background-image: url("~assets/images/yes.png");
+                background-position: center;
+                background-repeat: no-repeat;
+                &+.pname{
+                    color: #333;
+                }
+            }
+            &.active{
+                background-color: #0066ff;
+                &+.pname{
+                    color: #333;
+                }
+            }
+            &.no1{
+                left: 0;
+                top: -12px;
+            }
+            &.no2{
+                left: 142px;
+                top: -12px;
+            }
+            &.no3{
+                right: 0;
+                top: -12px;
+            }
+        }
+    }
+    .pname{
+       color: #999;
+    }
+}
+
+.mysql-upload{
+    .process{
+        .pname1{
+            position: absolute;
+            top: 12px;
+            left: -15px;
+        }
+        .pname2{
+            position: absolute;
+            left: 118px;
+            top: 12px;
+        }
+        .pname3{
+            position: absolute;
+            right: -18px;
+            top: 12px;
+        }
+    }
+}
+
+.upload{
+    .process{
+        .pname1 {
+            position: absolute;
+            left: -18px;
+            top: 12px;
+        }
+        .pname2 {
+            position: absolute;
+            left: 125px;
+            top: 12px;
+        }
+        .pname3 {
+            position: absolute;
+            right: -23px;
+            top: 12px;
+        }
+    }
+}
+
+
+/*上传数据 开始*/
+.upload-box{
+    width: 850px;
+    height: 486px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1), 0 16px 24px 0 rgba(0,0,0,.1);
+    padding: 60px 77px 0 77px;
+    box-sizing: border-box;
+    font-size: 16px;
+    &>.add-file{
+        display: block;
+        width: 690px;
+        height: 240px;
+        margin: 0 auto;
+        border: 1px  dashed rgb(153, 153, 153);
+        box-sizing: border-box;
+        border-radius: 5px;
+        text-align: center;
+        position:relative;
+        .upload-process{
+            display: none;
+            vertical-align: middle;
+            position: absolute;
+            top: 88px;
+            left: 170px;
+            position: absolute;
+            .file-name{
+                text-align: left;
+                margin-bottom: 3px;
+                display: inline-block;
+            }
+            .process-bar{
+                width: 307px;
+                height: 6px;
+                background-color: #cccccc;
+                border-radius: 20px;
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+                overflow: hidden;
+                &>span{
+                    background-color: #0066ff;
+                    border-bottom-right-radius: 20px;
+                    display: inline-block;
+                    position: absolute;
+                    left: 0;
+                    border-radius: 20px;
+                    width: 50%;
+                    height: 100%;
+                }
+                &+.del{
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+
+.upload-box{
+
+
+    .del{
+        width: 16px;
+        height: 16px;
+        background: url("../images/del.png") no-repeat center;
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+    }
+    &>.add-file{
+        .add-box{
+            .add-icon{
+                margin: 70px auto 30px;
+                &>.upload{
+                    width: 60px;
+                    height: 60px;
+                    background: url("../images/upload-add.png") no-repeat center;
+                    margin: 0 40px;
+                    position: relative;
+                    overflow: hidden;
+                    cursor: pointer;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                &>img+img{
+                    margin-left: 40px;
+                }
+            }
+        }
+    }
+    &>.detail{
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    &>.demo{
+        text-align: center;
+        margin-top: 40px;
+        &>a{
+            display: inline-block;
+            box-sizing: border-box;
+            width: 100px;
+            height: 32px;
+            border: 1px solid #0066ff;
+            border-radius: 3px;
+            color: #0066ff;
+            font-size: 14px;
+            text-align: center;
+            line-height: 32px;
+        }
+    }
+}
+
+
+/* .upload-box>.add-file .add-box
+.upload-box>.add-file>.add-box>.add-icon>img,.upload-box>.add-file>.add-box>.add-icon>.upload{
+    display: inline-block;
+    vertical-align: middle;
+} */
+
+.add-file .add-box>.add-icon>.upload>input[type="file"]{
+    position: absolute;
+    right:  -413px;
+}

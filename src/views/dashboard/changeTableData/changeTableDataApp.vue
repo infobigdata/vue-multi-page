@@ -75,7 +75,7 @@ export default {
             let q = Base.C.getUrlQuery('tableid')
             if (q) {
                 this.isError = false;
-                this.url = './replace.html?step=1&tableid='+q
+                this.url = './replacestep1.html?tableid='+q
                 this.getTable()
             }else{
                 this.isError = true;
