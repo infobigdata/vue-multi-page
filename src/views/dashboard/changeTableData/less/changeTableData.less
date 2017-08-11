@@ -1,3 +1,8 @@
+.body-style{
+    background-color: #eeeeee;
+    font-size: 14px;
+    color: #333333;
+}
 .data-header{
     width: 100%;
     height: 98px;
@@ -77,5 +82,118 @@
     }
 }
 
+.explain-box {
+    width: 240px;
+    display: inline-block;
+    float: left;
+    background-color: #fff;
+    height: ~'calc(100% - 102px)';
+    .text {
+        width: 100%;
+        padding: 40px 20px 30px;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgb(230, 230, 230);
+    }
+    .filelist {
+        width: 100%;
+        margin-top: 20px;
+        p {
+            padding: 0 0 20px 20px;
+        }
+        ul{
+            li{
+                padding: 0 10px 0 30px;
+                span{
+                    font-size: 14px;
+                    height: 30px;
+                    line-height: 30px;
+                    background: url("../images/file-icon.png") no-repeat left;
+                    padding-left: 26px;
+                    display: block;
+                }
+                &.active {
+                    background-color: #f6f6f6;
+                    span {
+                        background: url(../images/file-icon-h.png) no-repeat left;
+                        color: #0066ff;
+                    }
+                }
+            }
+        }
+    }
+}
 
+.file-content-box {
+    margin-left: 240px;
+    height: ~'calc(100% - 150px)';
+    .show-data-box{
+        background-color: #eee;
+        box-shadow:none;
+        width: inherit;
+        margin: 40px auto;
+        height: ~'calc(100% - 30px)';
+        .show-file {
+            width: ~'calc(100% - 80px)';
+            height: ~'calc(100% - 0px)';
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
 
+table{border:0;}
+.excel-table {
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    td{
+        text-align: left;
+        padding: 0 30px;
+        font-weight: normal;
+        height: 34px;
+        border: 1px solid rgb(221, 226, 236);
+        color: #333;
+    }
+    tr:nth-of-type(odd) {
+        background-color: #f6f6f6;
+    }
+    .thead {
+        font-size: 16px;
+        background-color: rgb(221, 221, 221);
+        color: rgb(51, 51, 51);
+        height: 45px;
+        white-space: nowrap;
+        .gzb_tb {
+            display: inline-block;
+            width: 14px;
+            height: 15px;
+            background: url(../images/icon_3.png) 0 0 no-repeat;
+            vertical-align: middle;
+            &.gzb_sz {
+                background-position: 0 -20px;
+            }
+        }
+        td{
+            border: 1px solid rgb(221, 226, 236);
+            height: 45px;
+            background: #ddd;
+            &:first-child {
+                border-left: 1px solid rgb(221, 226, 236);
+            }
+
+            &:last-child {
+                border-right: 1px solid rgb(221, 226, 236);
+            }
+        }
+        .bt-icon {
+            width: 62px;
+            height: 30px;
+            color: #fff;
+            display: inline-block;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+        }
+    }
+
+}

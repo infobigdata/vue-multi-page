@@ -1,7 +1,8 @@
 <template>
 
     <error v-if="isError"></error>
-    <div v-else>
+    <div class="body-style" v-else>
+
         <header class="data-header">
             <div class="logo">
                 <a href="/"><img src="~assets/images/logo.png"></a>
@@ -11,18 +12,34 @@
                     <span>替换模板数据</span>
                 </h3>
             </div>
-            <a href="/datasources/replacestep1/874" class="replace">替换工作表</a>
+            <a :href="url" class="replace">替换工作表</a>
             <a @click="tableBack()"><div class="back"></div></a>
         </header>
-        <div class="file-content-box">
-        <div class="show-data-box">
-            <div class="show-file ">
-                <div class="scroll-box MScroll MScrollyx horizontalScroll table_box" id="tabledata" v-html="tpl">
 
+        <div class="explain-box">
+            <div class="text">
+                <p>
+                    <a href="javascript:">mysql_45fbc25511</a> 使用了以下 1 张工作表数据，请替换以下工作表，以填充模板数据。
+                </p>
+                <p>该仪表盘新添加的图表，如需替换数据，请在工作表-替换数据操作。</p>
+            </div>
+            <div class="filelist">
+                <p>模板数据表：</p>
+                <ul>
+                    <li class="active"><span>mysql_45fbc25511</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="file-content-box">
+            <div class="show-data-box">
+                <div class="show-file ">
+                    <div class="scroll-box MScroll MScrollyx horizontalScroll table_box" id="tabledata" v-html="tpl">
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -46,6 +63,7 @@ export default {
     data(){
         return {
             isError: true,
+            url:'',
             tpl:''
         }
     },
@@ -57,6 +75,7 @@ export default {
             let q = Base.C.getUrlQuery('tableid')
             if (q) {
                 this.isError = false;
+                this.url = './replace.html?step=1&tableid='+q
                 this.getTable()
             }else{
                 this.isError = true;
@@ -66,6 +85,7 @@ export default {
             template.getTpl().then(data => {
                 var json = data.getTable.data;
                 this.tpl = json;
+
             })
         },
         tableBack(tableName){
@@ -79,61 +99,3 @@ export default {
 
 }
 </script>
-
-<style>
-table{border:0;}
-    #tabledata .excel-table {
-    width: 100%;
-    margin-bottom: 30px;
-}
-.excel-table .thead {
-    font-size: 16px;
-    background-color: rgb(221, 221, 221);
-    color: rgb(51, 51, 51);
-}
-
-.excel-table .thead .bt-icon {
-    width: 62px;
-    height: 30px;
-    /*background: url(/img/light/data/bt.png) no-repeat center;*/
-    color: #fff;
-    display: inline-block;
-    text-align: center;
-    line-height: 28px;
-    font-size: 14px;
-}
-
-.excel-table .thead {
-    height: 45px;
-    white-space: nowrap;
-}
-
-.excel-table .thead td,
-.excel-table tr td {
-    text-align: left;
-    padding: 0 30px;
-    font-weight: normal;
-}
-
-.excel-table .thead td {
-    border: 1px solid rgb(221, 226, 236);
-    height: 45px;
-}
-
-.excel-table .thead td:first-child {
-    border-left: 1px solid rgb(221, 226, 236) !important;
-}
-
-.excel-table .thead td:last-child {
-    border-right: 1px solid rgb(221, 226, 236) !important;
-}
-
-.excel-table td {
-    height: 34px;
-    border: 1px solid rgb(221, 226, 236);
-}
-
-.excel-table tr:nth-of-type(odd) {
-    background-color: #f6f6f6;
-}
-</style>
