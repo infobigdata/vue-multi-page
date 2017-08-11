@@ -1,4 +1,4 @@
-import layer from 'layer'
+// import layer from 'layer'
 
 const layerUtils = {
     layer_common_size: '600px',
